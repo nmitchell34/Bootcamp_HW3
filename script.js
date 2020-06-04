@@ -1,7 +1,8 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-function checkArray(arr){
-  return arr===true
+// Function used at bottom, checks if elements of an array equal the true boolean
+function checkArray(arr) {
+  return arr === true;
 }
 
 // Write password to the #password input
@@ -137,35 +138,37 @@ function writePassword() {
 
     //if by chance a certain character type isn't included, this next loop should fix that
     console.log(passwordArr);
-    var test = new Array (allSymbols.length)
-    do{
-    for (let i = 0; i < allSymbols.length; i++) {
-      test[i] = passwordArr.some((v) => allSymbols[i].includes(v));
-      if (passwordArr.some((v) => allSymbols[i].includes(v))) {
-        // console.log(passwordArr.some(v => allSymbols[i].includes(v)) + " password test")
-      } else {
-        // console.log(passwordArr.some(v => allSymbols[i].includes(v)) + " password test")
-        passwordArr[Math.floor(Math.random() * totalChars)] =
-          allSymbols[i][Math.floor(Math.random() * allSymbols[i].length)];
+    // This console log shows the current state of the array that is to be evaluated
+    var test = new Array(allSymbols.length);
+    do {
+      for (let i = 0; i < allSymbols.length; i++) {
+        test[i] = passwordArr.some((v) => allSymbols[i].includes(v));
+        if (passwordArr.some((v) => allSymbols[i].includes(v))) {
+          // If the char type is included in the password already it will evaluate the next character type.
+        } else {
+          passwordArr[Math.floor(Math.random() * totalChars)] =
+            allSymbols[i][Math.floor(Math.random() * allSymbols[i].length)];
+          // Otherwise a random character in the password is replaced by
+          // a random character from the missing character type.
+        }
       }
-    }
-    console.log(test)
-    console.log(test.every(checkArray))
-  }
-    while (test.every(checkArray)!==true)
-    // password array is changed to string
+      // console logs to show whats going on-how the code is evaluating each password.
+      console.log(test);
+      console.log(test.every(checkArray));
+    } while (test.every(checkArray) !== true);
+    // This do while loop will continue checking code
+    // until there is at least one of each character type
+    // requested in the password.
+
+    // Evaluated password array is changed to string.
     var passwordchars = passwordArr.join("");
     console.log(passwordchars);
 
-    for (let i = 0; i < allSymbols.length; i++) {
-      var test = passwordArr.some((v) => allSymbols[i].includes(v));
-    }
-        // password pasted to text box
-    console.log("--------------------------")
+    // This is to break up console analysis between consecutive password generations
+    console.log("--------------------------");
+    // Final password is pasted into the text box.
     document.getElementById("password").value = passwordchars;
-
   }
-
 }
 generateBtn.addEventListener("click", writePassword);
 // Add event listener to generate button

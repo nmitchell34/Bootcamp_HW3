@@ -84,40 +84,65 @@ function writePassword() {
     "}",
     "`",
   ];
-  var allSymbols = [alphabet];
-  var chooseUpper = confirm("Do you want Uppercase characters?");
-  // As people confirm whether or not theyd like certain characters it adds to allSymbols, a master array.
-  if (chooseUpper === true) {
-    allSymbols.push(upperalphabet);
-  }
+  var allSymbols = [];
 
-  var chooseNum = confirm("Do you want Numbers?");
-  if (chooseNum === true) {
-    allSymbols.push(numbers);
-  }
-
-  var chooseSymb = confirm("Do you want Symbols?");
-  if (chooseSymb === true) {
-    allSymbols.push(symbols);
-  }
-  console.log(allSymbols);
   var totalChars = parseInt(prompt("Number of characters? Min 8, Max 128"), 10);
   passwordArr = [];
 
-  for (let i = 0; i < totalChars; i++) {
-    var charType = Math.floor(Math.random() * allSymbols.length);
-    console.log("char type " + charType);
-    console.log("length of allSymbols[charType]" + allSymbols[charType].length);
-    var charSelect = Math.floor(Math.random() * allSymbols[charType].length);
-    passwordArr.push(allSymbols[charType][charSelect]);
-  }
-  var passwordchars = passwordArr.join("");
-  console.log(passwordchars);
-  document.getElementById("password").value = passwordchars
-  // var password = generatePassword();
-  // var passwordText = document.querySelector(passwordchars);
+  if (totalChars < 8) {
+    alert("Password must be between 8 and 128 characters");
+  } else if (totalChars > 128) {
+    alert("Password must be between 8 and 128 characters");
+  } else if (totalChars === null) {
+    alert("Select a password length");
+  } else {
+    var chooseNum = confirm("Do you want Lowercase characters?");
+    if (chooseNum === true) {
+      allSymbols.push(alphabet);
+    }
+    var chooseUpper = confirm("Do you want Uppercase characters?");
+    // As people confirm whether or not theyd like certain characters it adds to allSymbols, a master array.
+    if (chooseUpper === true) {
+      allSymbols.push(upperalphabet);
+    }
 
-  // passwordText.value = password;
+    var chooseNum = confirm("Do you want Numbers?");
+    if (chooseNum === true) {
+      allSymbols.push(numbers);
+    }
+
+    var chooseSymb = confirm("Do you want Symbols?");
+    if (chooseSymb === true) {
+      allSymbols.push(symbols);
+    }
+    if (allSymbols.length===0){
+      alert("You must select at least one character type")
+      return
+    }
+    for (let i = 0; i < totalChars; i++) {
+      var charType = Math.floor(Math.random() * allSymbols.length);
+      console.log("char type " + charType);
+      console.log(
+        "length of allSymbols[charType]" + allSymbols[charType].length
+      );
+      var charSelect = Math.floor(Math.random() * allSymbols[charType].length);
+      passwordArr.push(allSymbols[charType][charSelect]);
+    }
+    var passwordchars = passwordArr.join("");
+    console.log(passwordchars);
+    document.getElementById("password").value = passwordchars;
+    // var password = generatePassword();
+    // var passwordText = document.querySelector(passwordchars);
+
+    // passwordText.value = password;
+    for (let i = 0; i < allSymbols.length; i++) {
+      if (passwordchars.indexOf(allSymbols[i]) !== -1) {
+      } else {
+        passwordchars[Math.floor(Math.random() * totalChars)] =
+          allSymbols[i][Math.floor(Math.random() * allSymbols[i].length)];
+      }
+    }
+  }
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

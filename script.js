@@ -102,22 +102,22 @@ function writePassword() {
   }
   console.log(allSymbols);
   var totalChars = parseInt(prompt("Number of characters? Min 8, Max 128"), 10);
-  passwordArr=[]
+  passwordArr = [];
 
   for (let i = 0; i < totalChars; i++) {
-    var charType=Math.floor(Math.random()*allSymbols.length)
-    console.log("char type " + charType)
-    console.log("length of allSymbols[charType]" + allSymbols[charType].length)
-    var charSelect=Math.floor(Math.random()*allSymbols[charType].length)
-    passwordArr.push(allSymbols[charType][charSelect])
-}
-var passwordtext=passwordArr.join('')
-console.log(passwordtext)
+    var charType = Math.floor(Math.random() * allSymbols.length);
+    console.log("char type " + charType);
+    console.log("length of allSymbols[charType]" + allSymbols[charType].length);
+    var charSelect = Math.floor(Math.random() * allSymbols[charType].length);
+    passwordArr.push(allSymbols[charType][charSelect]);
+  }
+  var passwordchars = passwordArr.join("");
+  console.log(passwordchars);
+  document.getElementById("password").value = passwordchars
+  // var password = generatePassword();
+  // var passwordText = document.querySelector(passwordchars);
 
-  var password = generatePassword();
-  var passwordText = document.querySelector(password);
-
-  passwordText.value = password;
+  // passwordText.value = password;
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

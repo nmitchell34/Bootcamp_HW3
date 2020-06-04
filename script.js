@@ -96,12 +96,13 @@ function writePassword() {
   passwordArr = [];
   // if too few or too many are selected, or if cancel is clicked user will be restarted
   if (totalChars < 8) {
-    alert("Password must be between 8 and 128 characters");
+    alert("Please enter a number between 8 and 128");
   } else if (totalChars > 128) {
-    alert("Password must be between 8 and 128 characters");
+    alert("Please enter a number between 8 and 128");
   } else if (totalChars === null) {
-    alert("Select a password length");
-  } else {
+    alert("Please enter a number between 8 and 128");
+  } else if (totalChars>=8 && totalChars<=128) 
+    {
     // Checks with user if they want certain character classes
     var chooseNum = confirm("Do you want Lowercase characters?");
     if (chooseNum === true) {
@@ -168,6 +169,10 @@ function writePassword() {
     console.log("--------------------------");
     // Final password is pasted into the text box.
     document.getElementById("password").value = passwordchars;
+  }
+  // Final else checks for anything not a number
+  else{
+    alert("Please enter a number between 8 and 128")
   }
 }
 generateBtn.addEventListener("click", writePassword);

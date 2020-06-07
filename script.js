@@ -95,14 +95,7 @@ function writePassword() {
   // Password Array (Empty Right Now)
   passwordArr = [];
   // if too few or too many are selected, or if cancel is clicked user will be restarted
-  if (totalChars < 8) {
-    alert("Please enter a number between 8 and 128");
-  } else if (totalChars > 128) {
-    alert("Please enter a number between 8 and 128");
-  } else if (totalChars === null) {
-    alert("Please enter a number between 8 and 128");
-  } else if (totalChars>=8 && totalChars<=128) 
-    {
+  if (totalChars>=8 && totalChars<=128) {
     // Checks with user if they want certain character classes
     var chooseNum = confirm("Do you want Lowercase characters?");
     if (chooseNum === true) {
@@ -127,7 +120,7 @@ function writePassword() {
     // If no classes are selected, function is aborted.
     if (allSymbols.length === 0) {
       alert("You must select at least one character type");
-      return;
+      return
     }
     // Loops same # of times as there are desired password characters
     for (let i = 0; i < totalChars; i++) {
